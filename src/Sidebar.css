@@ -17,5 +17,8 @@
 
 .sidebar__footer {
   display: flex;
+  margin-top: 230px;
   justify-content: center;
+  border-top: 1px solid whitesmoke;
+  border-bottom: 1px solid whitesmoke;
 }

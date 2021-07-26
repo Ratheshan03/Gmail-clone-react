@@ -43,7 +43,7 @@ const EmailRow = ({ id, title, subject, description, time }) => {
         <h4>
           {subject}
           {"  "}
-          <span className="emailRow__description">-{description}</span>
+          <span className="emailRow__description"> - {description}</span>
         </h4>
       </div>
 

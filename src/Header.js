@@ -28,7 +28,7 @@ function Header() {
         </IconButton>
         <img
           src="https://i.pinimg.com/originals/ae/47/fa/ae47fa9a8fd263aa364018517020552d.png"
-          alt=""
+          alt="gmail-logo"
         />
       </div>
 
@@ -45,7 +45,11 @@ function Header() {
         <IconButton>
           <NotificationsIcon />
         </IconButton>
-        <Avatar onClick={signOut} src={user?.photoUrl} />
+        <Avatar
+          className="header__rightbtn"
+          onClick={signOut}
+          src={user?.photoUrl}
+        />
       </div>
     </div>
   );

@@ -7,10 +7,10 @@ import EmailList from "./EmailList";
 import SendMail from "./SendMail";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { selectSendMessageIsOpen } from "./features/mailSlice";
 import { login, selectUser } from "./features/userSlice";
 import Login from "./Login";
 import { auth } from "./firebase";
+import { selectSendMessageIsOpen } from "./features/mailSlice";
 
 function App() {
   const sendMessageIsOpen = useSelector(selectSendMessageIsOpen);
@@ -19,14 +19,16 @@ function App() {
 
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
-      //the user is logged in
-      dispatch(
-        login({
-          displayName: user.displayName,
-          email: user.email,
-          photoUrl: user.photoURL,
-        })
-      );
+      if (user) {
+        //the user is logged in
+        dispatch(
+          login({
+            displayName: user.displayName,
+            email: user.email,
+            photoUrl: user.photoURL,
+          })
+        );
+      }
     });
   }, []);
 

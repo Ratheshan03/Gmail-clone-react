@@ -9,11 +9,14 @@ import { db } from "./firebase";
 import firebase from "firebase";
 
 const SendMail = () => {
-  const { register, handleSubmit, watch, errors } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
   const dispatch = useDispatch();
 
   const onSubmit = (formData) => {
-    console.log(formData, "check data");
     db.collection("emails").add({
       to: formData.to,
       subject: formData.subject,
@@ -39,29 +42,32 @@ const SendMail = () => {
           name="to"
           placeholder="To"
           type="email"
-          ref={register({ required: true })}
+          {...register("to", { required: true })}
         />
-        {errors.to && <p className="sendMail__error">To is required</p>}
+
+        {errors.to && <p className="sendMail__error">To: is Required!</p>}
 
         <input
           name="subject"
           placeholder="Subject"
           type="text"
-          ref={register({ required: true })}
+          {...register("subject", { required: true })}
         />
+
         {errors.subject && (
-          <p className="sendMail__error">Subject is required</p>
+          <p className="sendMail__error">Subject is Required!</p>
         )}
 
         <input
           name="message"
           placeholder="Message..."
           type="text"
+          autoComplete="off"
           className="sendMail__message"
-          ref={register({ required: true })}
+          {...register("message", { required: true })}
         />
         {errors.message && (
-          <p className="sendMail__error">Message is required</p>
+          <p className="sendMail__error">Message is required!</p>
         )}
 
         <div className="sendMail__options">
